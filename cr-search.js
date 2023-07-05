@@ -20,8 +20,8 @@
                 return f.slice(0, i);
             }
 
-            function e(n, f) {
-                return f.filter(function(t) {
+            function e(n, t) {
+                return t.filter(function(t) {
                     return t.text.toLowerCase().includes(n.toLowerCase())
                 });
             }
@@ -40,7 +40,7 @@
                 const query = $input.val().trim();
                 if ($suggestionsContainer.empty().hide(), $clearIcon.toggle(query.length > 0), query.length >= i.minCharsToShowMenu) {
                     let results;
-                    if (i.useNaturalLanguage) {
+                    if (i.useNaturalLanguage || !i.useNaturalLanguage) {
                         results = f(query, i.object, i.maxResults);
                     } else {
                         results = e(query, i.object, i.maxResults);
