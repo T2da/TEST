@@ -56,9 +56,7 @@
                             $suggestion.on("click", function() {
                                 $input.val(item.text);
                                 $suggestionsContainer.empty().hide();
-                                if (typeof i.onSelect === 'function') {
-                                    i.onSelect(item); // Вызов метода при выборе пункта
-                                }
+                                console.log(123)
                             });
                             $suggestionsContainer.append($suggestion);
                         });
