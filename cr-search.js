@@ -6,8 +6,8 @@
             maxResults: 5,
             placeholderText: "Введите запрос",
             noResultsText: "Нет результатов",
-            showImage: !0,
-            useNaturalLanguage: !1,
+            showImage: true,
+            useNaturalLanguage: false,
             onSelect: null
         }, t);
         return this.each(function() {
@@ -16,15 +16,16 @@
                     keys: ["text"]
                 });
                 const u = r.search(n);
-                const f = u.slice(0, i.maxResults);
-                return f.map(n => n.item)
+                const f = u.map(n => n.item);
+                return f.slice(0, i);
             }
 
-            function e(n, t) {
-                return t.filter(function(t) {
+            function e(n, f) {
+                return f.filter(function(t) {
                     return t.text.toLowerCase().includes(n.toLowerCase())
-                })
+                });
             }
+            
             const $input = n(this);
             const $suggestionsContainer = n('<div class="suggestions-container"></div>');
             $input.attr("placeholder", i.placeholderText);
@@ -33,7 +34,7 @@
             $clearIcon.on("click", function() {
                 $input.val("").focus();
                 $suggestionsContainer.empty().hide();
-                $clearIcon.hide()
+                $clearIcon.hide();
             });
             $input.on("input", function() {
                 const query = $input.val().trim();
@@ -68,7 +69,21 @@
                         $suggestionsContainer.append($noResults);
                         $suggestionsContainer.insertAfter($input).show();
                     }
-
+                }
+            });
+            
+            $input.on("keyup", function(e) {
+                const query = $input.val().trim();
+                if (query.length === 0 && e.keyCode === 8) {
+                    $suggestionsContainer.empty().hide();
+                    $clearIcon.hide();
+                }
+            });
+            
+            n(document).on("click", function(e) {
+                if (!n(e.target).closest(".suggestions-container").length && !n(e.target).is($input)) {
+                    $suggestionsContainer.empty().hide();
+                    $clearIcon.hide();
                 }
             });
         });
