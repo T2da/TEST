@@ -16,7 +16,7 @@
                     keys: ["text"]
                 });
                 const u = r.search(n);
-                const f = u.slice(0, i);
+                const f = u.slice(0, i.maxResults);
                 return f.map(n => n.item)
             }
 
@@ -68,19 +68,7 @@
                         $suggestionsContainer.append($noResults);
                         $suggestionsContainer.insertAfter($input).show();
                     }
-                }
-            });
-            $input.on("keyup", function(e) {
-                const query = $input.val().trim();
-                if (query.length === 0 && e.keyCode === 8) {
-                    $suggestionsContainer.empty().hide();
-                    $clearIcon.hide();
-                }
-            });
-            n(document).on("click", function(e) {
-                if (!n(e.target).closest(".suggestions-container").length && !n(e.target).is($input)) {
-                    $suggestionsContainer.empty().hide();
-                    $clearIcon.hide();
+
                 }
             });
         });
