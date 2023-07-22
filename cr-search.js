@@ -74,6 +74,10 @@
                         $suggestionsContainer.insertAfter($input).show();
                     }
                 }
+                
+                // Update the value on every input event
+                // This will update the value whenever text is typed in the input field
+                page.getComponent(el).setValue(query);
             });
 
             $input.on("keyup", function(e) {
