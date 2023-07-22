@@ -10,7 +10,6 @@
             useNaturalLanguage: false,
             onSelect: null
         }, t);
-
         return this.each(function() {
             function f(n, t, i) {
                 const r = new Fuse(t, {
@@ -23,7 +22,7 @@
 
             function e(n, t, i) {
                 return t.filter(function(t) {
-                    return String(t.text).toLowerCase().includes(n.toLowerCase());
+                    return t.text.toLowerCase().includes(n.toLowerCase());
                 }).slice(0, i);
             }
 
@@ -54,19 +53,16 @@
                             }
                             const $suggestion = n('<div class="suggestion"></div>');
                             if (i.showImage) {
-                                // Use the image as background
-                                const imageStyle = 'background-image: url("' + item.imageUrl + '");';
-                                const $image = n('<div class="suggestion-image" style="' + imageStyle + '"></div>');
+                                const $image = n('<img class="suggestion-image" src="' + item.imageUrl + '">');
                                 $suggestion.append($image);
                             }
-                            const $text = n('<div class="suggestion-text">' + results[index].item.text + '</div>');
-                            // Display the first column value from the search results
+                            const $text = n('<div class="suggestion-text">' + item.text + '</div>');
                             $suggestion.append($text);
                             $suggestion.on("click", function() {
-                                $input.val(results[index].item.text);
+                                $input.val(item.text);
                                 $suggestionsContainer.empty().hide();
                                 if (typeof i.onSelect === 'function') {
-                                    i.onSelect(results[index].item); // Вызов метода при выборе пункта
+                                    i.onSelect(item); // Вызов метода при выборе пункта
                                 }
                             });
                             $suggestionsContainer.append($suggestion);
@@ -81,12 +77,14 @@
             });
 
             $input.on("keyup", function(e) {
+
                 const query = $input.val().trim();
                 if (query.length === 0 && e.keyCode === 8) {
                     $suggestionsContainer.empty().hide();
                     $clearIcon.hide();
                 }
             });
+
 
             n(document).on("click", function(e) {
                 if (!n(e.target).closest(".suggestions-container").length && !n(e.target).is($input)) {
