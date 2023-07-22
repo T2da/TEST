@@ -52,12 +52,18 @@
                                 return false; // Прерываем цикл после достижения максимального количества результатов
                             }
                             const $suggestion = n('<div class="suggestion"></div>');
-                            if (i.showImage) {
-                                const $image = n('<img class="suggestion-image" src="' + item.imageUrl + '">');
-                                $suggestion.append($image);
+                            const $suggestionText = n('<div class="suggestion-text">' + item.text + '</div>');
+                            $suggestion.append($suggestionText);
+                            
+                            // Add background image to the suggestion element
+                            if (i.showImage && item.imageUrl) {
+                                $suggestion.css({
+                                    'background-image': 'url(' + item.imageUrl + ')',
+                                    'background-size': 'cover',
+                                    'background-position': 'center'
+                                });
                             }
-                            const $text = n('<div class="suggestion-text">' + item.text + '</div>');
-                            $suggestion.append($text);
+                            
                             $suggestion.on("click", function() {
                                 $input.val(item.text);
                                 $suggestionsContainer.empty().hide();
