@@ -59,13 +59,14 @@
                                 const $image = n('<div class="suggestion-image" style="' + imageStyle + '"></div>');
                                 $suggestion.append($image);
                             }
-                            const $text = n('<div class="suggestion-text">' + item.text + '</div>');
+                            const $text = n('<div class="suggestion-text">' + results[index].item.text + '</div>');
+                            // Display the first column value from the search results
                             $suggestion.append($text);
                             $suggestion.on("click", function() {
-                                $input.val(item.text);
+                                $input.val(results[index].item.text);
                                 $suggestionsContainer.empty().hide();
                                 if (typeof i.onSelect === 'function') {
-                                    i.onSelect(item); // Вызов метода при выборе пункта
+                                    i.onSelect(results[index].item); // Вызов метода при выборе пункта
                                 }
                             });
                             $suggestionsContainer.append($suggestion);
