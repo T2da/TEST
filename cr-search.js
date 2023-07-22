@@ -10,6 +10,7 @@
             useNaturalLanguage: false,
             onSelect: null
         }, t);
+
         return this.each(function() {
             function f(n, t, i) {
                 const r = new Fuse(t, {
@@ -53,7 +54,9 @@
                             }
                             const $suggestion = n('<div class="suggestion"></div>');
                             if (i.showImage) {
-                                const $image = n('<img class="suggestion-image" src="' + item.imageUrl + '">');
+                                // Use the image as background
+                                const imageStyle = 'background-image: url("' + item.imageUrl + '");';
+                                const $image = n('<div class="suggestion-image" style="' + imageStyle + '"></div>');
                                 $suggestion.append($image);
                             }
                             const $text = n('<div class="suggestion-text">' + item.text + '</div>');
@@ -77,14 +80,12 @@
             });
 
             $input.on("keyup", function(e) {
-
                 const query = $input.val().trim();
                 if (query.length === 0 && e.keyCode === 8) {
                     $suggestionsContainer.empty().hide();
                     $clearIcon.hide();
                 }
             });
-
 
             n(document).on("click", function(e) {
                 if (!n(e.target).closest(".suggestions-container").length && !n(e.target).is($input)) {
