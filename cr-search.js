@@ -23,7 +23,7 @@
 
             function e(n, t, i) {
                 return t.filter(function(t) {
-                    return t.text.toLowerCase().includes(n.toLowerCase());
+                    return String(t.text).toLowerCase().includes(n.toLowerCase());
                 }).slice(0, i);
             }
 
