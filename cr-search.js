@@ -23,7 +23,7 @@
 
             function e(n, t, i) {
                 return t.filter(function(t) {
-                    return t.text.toLowerCase().includes(n.toLowerCase());
+                    return t.text[0].toLowerCase().includes(n.toLowerCase()); // Use only the first element for displaying suggestions
                 }).slice(0, i);
             }
 
@@ -59,10 +59,10 @@
                                 const $image = n('<div class="suggestion-image" style="' + imageStyle + '"></div>');
                                 $suggestion.append($image);
                             }
-                            const $text = n('<div class="suggestion-text">' + item.text + '</div>');
+                            const $text = n('<div class="suggestion-text">' + item.text[0] + '</div>'); // Display only the first element
                             $suggestion.append($text);
                             $suggestion.on("click", function() {
-                                $input.val(item.text);
+                                $input.val(item.text[0]); // Use only the first element on selection
                                 $suggestionsContainer.empty().hide();
                                 if (typeof i.onSelect === 'function') {
                                     i.onSelect(item); // Вызов метода при выборе пункта
