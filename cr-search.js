@@ -59,8 +59,6 @@
                             if (i.showImage && item.imageUrl) {
                                 $suggestion.css({
                                     'background-image': 'url(' + item.imageUrl + ')',
-                                    'background-size': 'cover',
-                                    'background-position': 'center'
                                 });
                             }
                             
