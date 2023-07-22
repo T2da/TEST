@@ -22,8 +22,10 @@
             }
 
             function e(n, t, i) {
-                return t.filter(function(t) {
-                    return t.text[0].toLowerCase().includes(n.toLowerCase()); // Use only the first element for displaying suggestions
+                return t.filter(function(item) {
+                    return item.text.some(function(textItem) {
+                        return textItem.toLowerCase().includes(n.toLowerCase());
+                    });
                 }).slice(0, i);
             }
 
