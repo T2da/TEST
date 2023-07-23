@@ -52,16 +52,15 @@
                                 return false; // Прерываем цикл после достижения максимального количества результатов
                             }
                             const $suggestion = n('<div class="suggestion"></div>');
-                            
+                            const $suggestionText = n('<div class="suggestion-text">' + item.text + '</div>');
+                            $suggestion.append($suggestionText);
+
                             // Add the image as an <img> tag with the specified properties
                             if (i.showImage && item.imageUrl) {
                                 const $image = n('<img class="" alt="" style="border-radius: 0px; --width: 1440px; --height: 1920px; --ratio: 0.75;" data-lazy-image="" data-lazy-image_resize="true" data-lazy-image_detect="css-width">');
                                 $image.attr('src', item.imageUrl);
                                 $suggestion.append($image);
                             }
-                            
-                            const $suggestionText = n('<div class="suggestion-text">' + item.text + '</div>');
-                            $suggestion.append($suggestionText);
 
                             $suggestion.on("click", function() {
                                 $input.val(item.text);
@@ -106,3 +105,4 @@
         });
     };
 })(jQuery);
+
