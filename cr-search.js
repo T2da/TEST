@@ -49,11 +49,10 @@
                     if (results.length > 0) {
                         n.each(results, function(index, item) {
                             if (index >= i.maxResults) {
-                                return false; // Прерываем цикл после достижения максимального количества результатов
+                                return false; 
                             }
                             const $suggestion = n('<div class="suggestion"></div>');
                             
-                            // Add the image as an <img> tag with the specified properties
                             if (i.showImage && item.imageUrl) {
                                 const $image = n('<img data-lazy-image_resize="true" data-lazy-image_detect="css-width">');
                                 $image.attr('src', item.imageUrl);
@@ -67,7 +66,7 @@
                                 $input.val(item.text);
                                 $suggestionsContainer.empty().hide();
                                 if (typeof i.onSelect === 'function') {
-                                    i.onSelect(item); // Вызов метода при выборе пункта
+                                    i.onSelect(item); 
                                 }
                             });
                             $suggestionsContainer.append($suggestion);
