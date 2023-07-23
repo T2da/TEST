@@ -9,7 +9,7 @@
             showImage: true,
             useNaturalLanguage: false,
             linkEnabled: true, // New parameter to control link functionality
-            linkColumnIndex: 2, // Assuming the link column index is 2, change it according to your data
+            linkColumnIndex: 0, // Assuming the default link column index is 0 (first column), change it according to your data
             onSelect: null,
             onInput: null,
         };
@@ -75,8 +75,10 @@
                                 const columnIndexWithLink = settings.linkColumnIndex;
 
                                 if (settings.linkEnabled && columnIndexWithLink >= 0 && columnIndexWithLink < columns.length) {
-                                    const linkValue = rows.find(row => row[0] === selectedText)[columnIndexWithLink];
+                                    const linkValue = data.rows.find(row => row[0] === selectedText)[columnIndexWithLink];
                                     if (linkValue) {
+                                        // Perform the link action here with the linkValue
+                                        // For example, you can use window.location.href to navigate to the link
                                         window.location.href = linkValue;
                                     }
                                 }
