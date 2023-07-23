@@ -10,6 +10,8 @@
             useNaturalLanguage: false,
             linkEnabled: true, // New parameter to control link functionality
             linkColumnIndex: 2, // Assuming the default link column index is 2, change it according to your data
+            onSelect: null, // Added onSelect as a default parameter
+            onInput: null, // Added onInput as a default parameter
         };
 
         const settings = $.extend({}, defaults, options);
